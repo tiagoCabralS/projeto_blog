@@ -1,0 +1,51 @@
+*{
+    margin: 0;
+    padding: 0;
+
+}
+body{
+    background-color: rgba(245, 245, 220, 0.76);
+}
+header{
+    background-color: orange;
+    padding: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    height: 15vh;
+    display: flex;
+    justify-content: space-between;
+}
+header a{
+    text-decoration: none;
+    font-size: 10vh;
+    margin-left: 15px;
+}
+header ul{
+    display: flex;
+    list-style-type: none;
+}
+main{
+    background-color: white;
+    margin: auto;
+    width: 80vw;
+    padding: 30px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+}
+.subt{
+    font-family: sans-serif;
+}
+.subt a{
+    text-decoration: none;
+    color: black;
+}
+.paragrafo{
+    margin: 10px;
+    overflow-wrap: break-word;
+    word-break: break-all;
+    max-width: 100%;
+}
+article{
+    margin: 30px;
+}
+.form-group{
+    margin: 10px;
+}

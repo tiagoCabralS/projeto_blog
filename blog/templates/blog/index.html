@@ -1,0 +1,13 @@
+{% extends "global/base.html" %}
+
+{% block content %}
+    <main>
+        {% for post in posts %}
+            <article>
+                <h2 class="subt"><a href="{% url "blog:post_detail" post.id %}">{{ post.title }}</a></h2>
+                <p class="paragrafo">{{ post.text }}</p>
+                <time>Publicado em: {{ post.created_date }}</time>
+            </article>
+        {% endfor %}
+    </main>
+{% endblock content %}
