@@ -8,5 +8,8 @@
             <time datetime="{{ post.created_date }}">Publicado em: {{ post.created_date }}</time>
             <p>Autor: {{ post.owner }}</p>
         </article>
+        {% if post.owner.id == user.id %}
+            <a class="btn btn_update" href="{% url "blog:post_update" post.id %}">Update</a>
+        {% endif %}
     </main>
 {% endblock content %}

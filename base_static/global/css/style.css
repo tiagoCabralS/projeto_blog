@@ -49,3 +49,16 @@ article{
 .form-group{
     margin: 10px;
 }
+.btn{
+    padding: 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    border-width: 0px;
+}
+.btn_update{
+    background-color: rgb(30, 102, 210);
+    color: white;
+}
+.btn_update:hover{
+    background-color: rgb(19, 64, 131);
+}

@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.decorators import login_required
 from django.contrib import auth, messages
 
 from blog.forms import PostForm, RegisterForm
@@ -20,6 +21,7 @@ def index(request):
         context
         )
 
+@login_required(login_url='blog:login')
 def novo_post(request):
     form_action = reverse('blog:novo_post')
     
@@ -60,6 +62,39 @@ def post_detail(request, post_id):
         context
     )
 
+@login_required(login_url='blog:login')
+def post_update(request, post_id):
+    form_action = reverse('blog:post_update', args=(post_id,))
+    post = get_object_or_404(
+        Post,
+        pk=post_id,
+        owner=request.user
+    )
+    
+    if request.method == 'POST':
+        form = PostForm(request.POST, instance=post)
+
+        context = {
+        'form': form,
+        'form_action': form_action
+    }
+        
+        if form.is_valid():
+            print('Formulário válido')
+            post = post.save()
+            return redirect('blog:post_update', post_id=post_id)
+        
+    context = {
+        'form': PostForm(instance=post),
+        'form_action': form_action
+    }
+    
+    return render(
+        request,
+        'blog/post_update.html',
+        context
+        )
+
 def login(request):
     form = AuthenticationForm(request)
     
@@ -82,6 +117,12 @@ def login(request):
         'blog/login.html',
         context
     )
+ 
+@login_required(login_url='blog:login')   
+def logout(request):
+    auth.logout(request)
+    messages.info(request, 'Você saiu do sistema')
+    return redirect('blog:login')
     
 def register(request):
     context = {
