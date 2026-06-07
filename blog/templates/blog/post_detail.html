@@ -6,6 +6,7 @@
             <h2 class="subt">{{ post.title }}</h2>
             <p class="paragrafo">{{ post.text }}</p>
             <time datetime="{{ post.created_date }}">Publicado em: {{ post.created_date }}</time>
+            <p>Autor: {{ post.owner }}</p>
         </article>
     </main>
 {% endblock content %}
