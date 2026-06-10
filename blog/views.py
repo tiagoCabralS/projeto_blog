@@ -95,6 +95,29 @@ def post_update(request, post_id):
         context
         )
 
+@login_required(login_url='blog:login')    
+def post_delete(request, post_id):
+    post = get_object_or_404(
+        Post,
+        pk=post_id,
+        owner=request.user
+    )
+    confirmation = request.POST.get('confirmation', 'no')
+    print('confirmation: ', confirmation)
+    
+    if confirmation == "'yes'":
+        post.delete()
+        return redirect('blog:index')
+    
+    return render(
+        request,
+        'blog/post_detail.html',
+        {
+            'post': post,
+            'confirmation': confirmation
+        }
+    )
+
 def login(request):
     form = AuthenticationForm(request)
     
